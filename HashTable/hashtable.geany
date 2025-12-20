@@ -18,7 +18,7 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=hashtable
+name=HashTable
 base_path=/home/hp/_Projekte/C/C-Utilities/HashTable
 description=
 file_patterns=

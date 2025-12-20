@@ -18,9 +18,10 @@ detect_indent_width=false
 indent_mode=2
 
 [project]
-name=sortedlinkedlist
+name=LinkedList
 base_path=/home/hp/_Projekte/C/C-Utilities/LinkedList
 description=
+file_patterns=
 
 [long line marker]
 long_line_behaviour=1
