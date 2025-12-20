@@ -1,8 +1,10 @@
 # C Utilities
 
+![C](C.png)
+
 ## Hash Table
 
-A generic C implementation of a hash table using:
+A generic C implementation of a [**hash table**](https://en.wikipedia.org/wiki/Hash_table) using:
 
 - Associated data is stored alongside each key
 - Both key and data are handled generically via void *
@@ -14,7 +16,7 @@ A generic C implementation of a hash table using:
 
 ## Linked List
 
-A generic C implementation of a sorted doubly linked list where:
+A generic C implementation of a sorted doubly [**linked list**](https://en.wikipedia.org/wiki/Linked_list) where:
 
 - Keys are sorted using a user-provided comparison function
 - Associated data is stored alongside each key
