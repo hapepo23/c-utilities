@@ -194,7 +194,7 @@ void example3(void) {
     abort();
   }
 
-  FILE* fp = fopen("data/handedict.txt", "r");
+  FILE* fp = fopen("data/handedict-x.txt", "r");
   char* line = NULL;
   size_t len = 0;
 
@@ -286,11 +286,8 @@ void example3(void) {
     printf("Entry '%s' not found\n", key4);
   }
 
-  printf("-------\nThe first 10 items:\n");
-  ll_foreach(chin, print_chin, 10, NULL);
-
-  printf("-------\nThe last 10 items:\n");
-  ll_foreach_reverse(chin, print_chin, 10, NULL);
+  printf("-------\nThe first 20 items:\n");
+  ll_foreach(chin, print_chin, 20, NULL);
 
   printf("-------\nSize: %ld\n", ll_size(chin));
   puts("-------");
