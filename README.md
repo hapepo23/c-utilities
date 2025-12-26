@@ -23,3 +23,15 @@ A generic C implementation of a sorted doubly [**linked list**](https://en.wikip
 - Both key and data are handled generically via void *
 - Memory management hooks are provided for flexibility
 - Iteration over all entries (ascending or descending) with user-provided function
+
+## Vector
+
+A generic C implementation of a [**one-dimensional array data structure (Vector)**](https://en.wikipedia.org/wiki/Array_(data_structure)) where:
+
+- Each vector element has a key and value(s) of any type
+- Elements may be sorted according to the keys
+- Insert at the end or at specified index
+- Stable sort (merge sort) and binary search
+- Delete by index
+- Memory management hooks are provided for flexibility
+- Forward & reverse iteration, sorted or unsorted, with user-provided function
