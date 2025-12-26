@@ -49,7 +49,7 @@ vect_elem* vector_get(vector* vec, const size_t index);
 
 /* Sorting & searching */
 void vector_sort_stable(vector* vec);
-vect_elem* vector_binary_search(const vector* vec, const void* key);
+void* vector_binary_search(const vector* vec, const void* key);
 
 /* Iteration unsorted */
 void vector_iterate(const vector* vec,

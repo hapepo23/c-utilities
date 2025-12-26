@@ -168,16 +168,16 @@ void example1(void) {
   /* Binary search */
   printf("\nTesting binary search...\n");
   int key = 3;
-  e = vector_binary_search(vec, &key);
-  if (e) {
-    printf("Found key=%d value=%s\n", *(int*)e->key, (char*)e->value);
+  char* ee = vector_binary_search(vec, &key);
+  if (ee) {
+    printf("Found key=%d value=%s\n", key, ee);
   } else {
     printf("Key %d not found\n", key);
   }
   key = 999;
-  e = vector_binary_search(vec, &key);
-  if (e) {
-    printf("Found key=%d value=%s\n", *(int*)e->key, (char*)e->value);
+  ee = vector_binary_search(vec, &key);
+  if (ee) {
+    printf("Found key=%d value=%s\n", key, ee);
   } else {
     printf("Key %d not found\n", key);
   }
@@ -228,8 +228,8 @@ void example1(void) {
   vector_iterate_sorted_reverse(vec, print_cb, 0, NULL);
 
   key = 2;
-  e = vector_binary_search(vec, &key);
-  printf("\nBinary search key=2 -> %s\n", (char*)e->value);
+  ee = vector_binary_search(vec, &key);
+  printf("\nBinary search key=2 -> %s\n", ee);
 
   vector_clear(vec);
   printf("\nAfter clear, size=%zu\n", vec->size);
@@ -248,7 +248,7 @@ void example2(void) {
     abort();
   }
 
-  FILE* fp = fopen("data/handedict-x.txt", "r");
+  FILE* fp = fopen("data/handedict.txt", "r");
   char* line = NULL;
   size_t len = 0;
 
@@ -297,14 +297,22 @@ void example2(void) {
   printf("-------\nThe first 20 unsorted items:\n");
   vector_iterate(chin, print_chin, 20, NULL);
 
+  ChineseDictEntry* ce;
+  vect_elem* e = vector_get(chin, 19);
+  if (e) {
+    ce = e->value;
+    printf("Access index 19: key=%s value=%s\n", (char*)e->key,
+           ce->translation);
+  } else {
+    printf("Access index 19: not found\n");
+  }
+
   vector_sort_stable(chin);
 
-  ChineseDictEntry* ce = NULL;
   const char* key1 = "就在前面";
-  vect_elem* found = vector_binary_search(chin, key1);
-  if (found) {
+  ce = vector_binary_search(chin, key1);
+  if (ce) {
     printf("Entry found: %s\n", key1);
-    ce = found->value;
     printf("  Trad  : %s\n", ce->trad);
     printf("  Simp  : %s\n", ce->simp);
     printf("  Pinyin: %s\n", ce->pinyin);
@@ -314,10 +322,9 @@ void example2(void) {
   }
 
   const char* key2 = "尸身";
-  found = vector_binary_search(chin, key2);
-  if (found) {
+  ce = vector_binary_search(chin, key2);
+  if (ce) {
     printf("Entry found: %s\n", key2);
-    ce = found->value;
     printf("  Trad  : %s\n", ce->trad);
     printf("  Simp  : %s\n", ce->simp);
     printf("  Pinyin: %s\n", ce->pinyin);
@@ -327,10 +334,9 @@ void example2(void) {
   }
 
   const char* key3 = "愛和平";
-  found = vector_binary_search(chin, key3);
-  if (found) {
+  ce = vector_binary_search(chin, key3);
+  if (ce) {
     printf("Entry found: %s\n", key3);
-    ce = found->value;
     printf("  Trad  : %s\n", ce->trad);
     printf("  Simp  : %s\n", ce->simp);
     printf("  Pinyin: %s\n", ce->pinyin);
@@ -340,10 +346,9 @@ void example2(void) {
   }
 
   const char* key4 = "abcd";
-  found = vector_binary_search(chin, key4);
-  if (found) {
+  ce = vector_binary_search(chin, key4);
+  if (ce) {
     printf("Entry found: %s\n", key4);
-    ce = found->value;
     printf("  Trad  : %s\n", ce->trad);
     printf("  Simp  : %s\n", ce->simp);
     printf("  Pinyin: %s\n", ce->pinyin);
@@ -354,6 +359,15 @@ void example2(void) {
 
   printf("-------\nThe first 20 sorted items:\n");
   vector_iterate_sorted(chin, print_chin, 20, NULL);
+
+  e = vector_get(chin, 19);
+  if (e) {
+    ce = e->value;
+    printf("Access index 19: key=%s value=%s\n", (char*)e->key,
+           ce->translation);
+  } else {
+    printf("Access index 19: not found\n");
+  }
 
   printf("-------\nSize: %ld\n", vector_size(chin));
   printf("-------\nIs Sorted?: %d\n", vector_is_sorted(chin));

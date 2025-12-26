@@ -164,7 +164,7 @@ void vector_sort_stable(vector* vec) {
 
 /* ---------- Binary Search ---------- */
 
-vect_elem* vector_binary_search(const vector* vec, const void* key) {
+void* vector_binary_search(const vector* vec, const void* key) {
   if (!vec || !vec->sorted)
     return NULL;
 
@@ -173,7 +173,7 @@ vect_elem* vector_binary_search(const vector* vec, const void* key) {
     size_t m = (l + r) / 2;
     int c = vec->cmp_func(key, vec->data[m].key);
     if (c == 0)
-      return &vec->data[m];
+      return vec->data[m].value;
     if (c < 0)
       r = m;
     else
