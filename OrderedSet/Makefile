@@ -1,6 +1,6 @@
 CC      ?= gcc
 CFLAGS  ?= -Wall -Wextra -O1 -g
-LDFLAGS ?= 
+LDFLAGS ?=
 
 TARGET_EXEC ?= main
 BUILD_DIR   ?= ./build
@@ -21,20 +21,21 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
 .PHONY: all clean
-all: $(BUILD_DIR)/$(TARGET_EXEC)
+all: $(TARGET_EXEC)
 
-# Link target
-$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+# Link target → output in project root
+$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
 # Compile C files into flattened object files
 $(BUILD_DIR)/%.o: $(SRC_DIRS)/%.c
-	@$(MKDIR_P) $(BUILD_DIR)
+	@$(MKDIR_P) $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-# Clean build directory
+# Clean build directory + executable
 clean:
-	@if [ -d "$(BUILD_DIR)" ]; then rm -rf "$(BUILD_DIR)"; fi
+	rm -rf "$(BUILD_DIR)" "$(TARGET_EXEC)"
 
 # Include generated dependency files
 -include $(DEPS)
+
